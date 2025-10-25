@@ -36,4 +36,13 @@ const useAdminAuthStore = create(
   )
 );
 
+// Hook that provides the interface AdminTopbar expects
+export const useAdminAuth = () => {
+  const logout = useAdminAuthStore((state) => state.logout);
+
+  return {
+    logout,
+  };
+};
+
 export { useAdminAuthStore };

@@ -12,11 +12,12 @@ import {
   Shield, 
   Gamepad2, 
   MessageSquare,
-  ChevronDown
+  ChevronDown,
+  Menu
 } from 'lucide-react';
 import { useAdmin } from '../hooks/useAdmin';
 
-const AdminSidebar = ({ collapsed  }) => {
+const AdminSidebar = ({ collapsed, onToggle }) => {
   const location = useLocation();
   const { currentUser } = useAdmin();
   const [expandedMenus, setExpandedMenus] = useState([]);
@@ -40,7 +41,93 @@ const AdminSidebar = ({ collapsed  }) => {
         { label: 'User Activity', path: '/admin/users/activity' }
       ]
     },
-    // ... other menu items
+    {
+      id: 'sports',
+      label: 'Sports & Markets',
+      icon: Trophy,
+      submenu: [
+        { label: 'Sports Management', path: '/admin/sports' },
+        { label: 'Markets & Odds', path: '/admin/sports/markets' },
+        { label: 'Matches & Events', path: '/admin/sports/matches' },
+        { label: 'Leagues & Tournaments', path: '/admin/sports/leagues' }
+      ]
+    },
+    {
+      id: 'financial',
+      label: 'Financial Management',
+      icon: DollarSign,
+      submenu: [
+        { label: 'Transactions', path: '/admin/financial/transactions' },
+        { label: 'Betting Operations', path: '/admin/financial/operations' },
+        { label: 'Payment Methods', path: '/admin/financial/payments' },
+        { label: 'Financial Reports', path: '/admin/financial/reports' }
+      ]
+    },
+    {
+      id: 'analytics',
+      label: 'Analytics & Reports',
+      icon: BarChart3,
+      submenu: [
+        { label: 'Business Analytics', path: '/admin/analytics/business' },
+        { label: 'User Analytics', path: '/admin/analytics/users' },
+        { label: 'Risk Management', path: '/admin/analytics/risk' },
+        { label: 'Performance Reports', path: '/admin/analytics/performance' }
+      ]
+    },
+    {
+      id: 'promotions',
+      label: 'Promotions & Bonuses',
+      icon: Gift,
+      submenu: [
+        { label: 'Campaign Management', path: '/admin/promotions/campaigns' },
+        { label: 'Bonus Codes', path: '/admin/promotions/codes' },
+        { label: 'Marketing Tools', path: '/admin/promotions/marketing' },
+        { label: 'Loyalty Programs', path: '/admin/promotions/loyalty' }
+      ]
+    },
+    {
+      id: 'virtual',
+      label: 'Virtual Sports & Games',
+      icon: Gamepad2,
+      submenu: [
+        { label: 'Virtual Sports', path: '/admin/virtual/sports' },
+        { label: 'Casino Games', path: '/admin/virtual/casino' },
+        { label: 'Game Settings', path: '/admin/virtual/settings' }
+      ]
+    },
+    {
+      id: 'support',
+      label: 'Customer Support',
+      icon: MessageSquare,
+      submenu: [
+        { label: 'Support Tickets', path: '/admin/support/tickets' },
+        { label: 'Live Chat', path: '/admin/support/chat' },
+        { label: 'FAQ Management', path: '/admin/support/faq' },
+        { label: 'Feedback Analysis', path: '/admin/support/feedback' }
+      ]
+    },
+    {
+      id: 'compliance',
+      label: 'Compliance & Security',
+      icon: Shield,
+      submenu: [
+        { label: 'Regulatory Tools', path: '/admin/compliance/regulatory' },
+        { label: 'Audit Trails', path: '/admin/compliance/audit' },
+        { label: 'Security Monitoring', path: '/admin/compliance/security' },
+        { label: 'AML Tools', path: '/admin/compliance/aml' }
+      ]
+    },
+    {
+      id: 'system',
+      label: 'System Configuration',
+      icon: Settings,
+      submenu: [
+        { label: 'Platform Settings', path: '/admin/system/platform' },
+        { label: 'API Management', path: '/admin/system/api' },
+        { label: 'Maintenance', path: '/admin/system/maintenance' },
+        { label: 'Backup & Recovery', path: '/admin/system/backup' }
+      ]
+    }
   ], []);
 
   useEffect(() => {
@@ -64,14 +151,25 @@ const AdminSidebar = ({ collapsed  }) => {
     <div className={`bg-sidebar-background text-sidebar-foreground transition-all duration-300 ${collapsed ? 'w-20' : 'w-64'} flex flex-col`}>
       {/* Logo */}
       <div className="p-4 border-b border-sidebar-border">
-        <div className="flex items-center">
-          <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
-            <img src={Slogo} alt="SportyBet" className="w-12 h-8 object-contain" />
-          </div>
-          {!collapsed && (
-            <div className="ml-3">
-              <p className="text-xs text-sidebar-foreground/60">Admin Panel</p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
+              <img src={Slogo} alt="SportyBet" className="w-12 h-8 object-contain" />
             </div>
+            {!collapsed && (
+              <div className="ml-3">
+                <p className="text-xs text-sidebar-foreground/60">Admin Panel</p>
+              </div>
+            )}
+          </div>
+          {!collapsed && onToggle && (
+            <button
+              onClick={onToggle}
+              className="p-1 rounded-lg hover:bg-sidebar-accent transition-colors"
+              title="Toggle Sidebar"
+            >
+              <Menu className="w-4 h-4 text-sidebar-foreground/60" />
+            </button>
           )}
         </div>
       </div>

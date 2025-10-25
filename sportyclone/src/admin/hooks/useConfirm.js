@@ -32,8 +32,8 @@ export const useConfirm = () => {
   }, [state]);
 
   const close = useCallback(() => {
-    state.onCancel();
-  }, [state]);
+    setState((prev) => ({ ...prev, isOpen: false }));
+  }, []);
 
   const setLoading = useCallback((loading) => {
     setState((prev) => ({ ...prev, loading }));
