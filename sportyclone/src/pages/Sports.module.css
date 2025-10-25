@@ -1,0 +1,38 @@
+/* Dynamic progress bar styles */
+.progressBar {
+  transition: width 0.1s ease-linear;
+}
+
+/* Progress bar with dynamic width via CSS custom properties */
+.progressBarDynamic {
+  transition: width 0.1s ease-linear;
+  width: var(--progress-width, 0%);
+}
+
+/* Utility classes for dynamic widths */
+.width-0 { width: 0%; }
+.width-5 { width: 5%; }
+.width-10 { width: 10%; }
+.width-15 { width: 15%; }
+.width-20 { width: 20%; }
+.width-25 { width: 25%; }
+.width-30 { width: 30%; }
+.width-35 { width: 35%; }
+.width-40 { width: 40%; }
+.width-45 { width: 45%; }
+.width-50 { width: 50%; }
+.width-55 { width: 55%; }
+.width-60 { width: 60%; }
+.width-65 { width: 65%; }
+.width-70 { width: 70%; }
+.width-75 { width: 75%; }
+.width-80 { width: 80%; }
+.width-85 { width: 85%; }
+.width-90 { width: 90%; }
+.width-95 { width: 95%; }
+.width-100 { width: 100%; }
+
+/* Smooth scrolling for carousels */
+.smoothScroll {
+  scroll-behavior: smooth;
+}

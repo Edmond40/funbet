@@ -1,0 +1,9 @@
+.sidebar-vars {
+  --sidebar-width: 16rem;
+  --sidebar-width-icon: 3rem;
+}
+
+/* Applied on mobile SheetContent to override width */
+.sidebar-vars-mobile {
+  --sidebar-width: 18rem;
+}
